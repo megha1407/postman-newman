@@ -1,0 +1,1017 @@
+{
+	"info": {
+		"_postman_id": "c3a9ccf6-f361-4ada-8a4a-2329ac49cb64",
+		"name": "cluey-salesforce-postgress-sync-int",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "health-check",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(400);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.test(\"health-check\", function () {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData).to.eql({\r",
+							"    \"application_name\": \"cluey-salesforce-postgres-sync-int\",\r",
+							"    \"application_version\": \"1.0.0-SNAPSHOT\",\r",
+							"    \"api_name\": \"cluey-salesforce-postgres-sync-int\",\r",
+							"    \"environment\": \"dev\",\r",
+							"    \"status\": \"running\"\r",
+							"});\r",
+							"    });\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/health",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"pm.test(\"sf-pg-account\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({\r",
+							"    \"message\": \"Sync Started\"\r",
+							"});\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/accounts?startDate=2022-01-18T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"accounts"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2022-01-18T00:00:00.000Z"
+						},
+						{
+							"key": "object",
+							"value": "Account",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"pm.test(\"sf-pg-session\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({\r",
+							"    \"message\": \"Sync Started\"\r",
+							"});\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/sessions?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"sessions"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-student-session",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"pm.test(\"sf-pg-student-session\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({\r",
+							"    \"message\": \"Sync Started\"\r",
+							"});\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/studentsessions?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"studentsessions"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-package",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"pm.test(\"sf-pg-package\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({\r",
+							"    \"message\": \"Sync Started\"\r",
+							"});\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/packages?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"packages"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-package-master",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"pm.test(\"sf-pg-package-master\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({\r",
+							"    \"message\": \"Sync Started\"\r",
+							"});\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/packagemasters?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"packagemasters"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-timezone",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(202);\r",
+							"pm.test(\"sf-pg-timezone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.eql({\r",
+							"    \"message\": \"Sync Started\"\r",
+							"});\r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/timezones?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"timezones"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-alternate-tutor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/alternatetutors?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"alternatetutors"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-period",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/periods?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"periods"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-recordtype",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/recordtypes?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"recordtypes"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-invoices",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/invoices?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"invoices"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-creditcard-details",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/creditcarddetails?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"creditcarddetails"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-case",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/cases?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"cases"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-external-system-log",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/externalsystems?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"externalsystems"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sf-pg-enrolment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/sfpg/enrolments?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"sfpg",
+						"enrolments"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pg-sf-account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/pgsf/accounts?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"pgsf",
+						"accounts"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pg-sf-external-system-log",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/sync/pgsf/externalsystems?startDate=2021-11-06T00:00:00.000Z",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"sync",
+						"pgsf",
+						"externalsystems"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2021-11-06T00:00:00.000Z"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert-new-watermark",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"objectName\" : \"sf-pg-watermark-account\",\r\n    \"objectValue\" : \"2020-09-11T00:00:00.000Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base-url}}/watermarks/object",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"watermarks",
+						"object"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-watermark",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/watermarks/object?objectName=sf-pg-watermark-account",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"watermarks",
+						"object"
+					],
+					"query": [
+						{
+							"key": "objectName",
+							"value": "sf-pg-watermark-account"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-watermark",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "client_id",
+						"value": "{{client_id}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "client_secret",
+						"value": "{{client_secret}}",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "x-api-key",
+						"value": "{{x-api-key}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base-url}}/watermarks",
+					"host": [
+						"{{base-url}}"
+					],
+					"path": [
+						"watermarks"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
